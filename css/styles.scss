@@ -1,0 +1,129 @@
+// ==========================================================================
+// Estilos SASS para el Módulo 4 - Preprocesadores y Automatización
+// ==========================================================================
+
+// 1. Variables requeridas que representan los colores amarillo, rojo y verde
+$color-amarillo: #f59e0b;
+$color-rojo: #ef4444;
+$color-verde: #10b981;
+
+// Variables complementarias de diseño
+$color-primario: #0284c7;
+$color-secundario: #0f172a;
+$color-fondo: #f8fafc;
+$color-texto: #1e293b;
+
+// 2. Mixin requerido en styles.scss con márgenes, padding y colores
+@mixin caja-destacada($margen: 1.5rem, $relleno: 1.5rem, $color-fondo: #ffffff, $color-borde: $color-verde) {
+  margin-top: $margen;
+  margin-bottom: $margen;
+  padding: $relleno;
+  background-color: $color-fondo;
+  border-left: 5px solid $color-borde;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.06);
+}
+
+// Estilos globales usando variables
+body {
+  padding-top: 76px;
+  background-color: $color-fondo;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: $color-texto;
+}
+
+.navbar {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+// Aplicación del Mixin requerido para cajas contextuales
+.alerta-verde {
+  @include caja-destacada(1.5rem, 1.25rem, #ecfdf5, $color-verde);
+  color: #065f46;
+}
+
+.alerta-amarilla {
+  @include caja-destacada(1.5rem, 1.25rem, #fffbeb, $color-amarillo);
+  color: #92400e;
+}
+
+.alerta-roja {
+  @include caja-destacada(1.5rem, 1.25rem, #fef2f2, $color-rojo);
+  color: #991b1b;
+}
+
+// Estilos de productos y componentes
+.card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.card-img-top {
+  background-color: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.card-footer {
+  background-color: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+// Indicadores de estado con variables
+.badge-alerta-amarilla {
+  background-color: $color-amarillo;
+  color: #1e293b;
+}
+
+.badge-alerta-roja {
+  background-color: $color-rojo;
+  color: #ffffff;
+}
+
+.badge-alerta-verde {
+  background-color: $color-verde;
+  color: #ffffff;
+}
+
+// Botón de activación del modal con transición de color
+#btnAbrirModal {
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+// Footer
+.footer {
+  background-color: $color-secundario;
+  color: #94a3b8;
+  border-top: 3px solid $color-primario;
+
+  h5 {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  a {
+    color: #38bdf8;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  address {
+    font-style: normal;
+    line-height: 1.6;
+  }
+}

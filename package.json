@@ -1,0 +1,36 @@
+{
+  "name": "modulo-4",
+  "version": "1.0.0",
+  "description": "Proyecto Modulo 4 - SASS, Automatizacion y Eventos JS Bootstrap",
+  "main": "index.html",
+  "scripts": {
+    "dev": "lite-server",
+    "start": "npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass -o css/ css/",
+    "watch:scss": "onchange \"css/*.scss\" -- npm run scss",
+    "clean": "rimraf distri",
+    "build": "node ./bin/build.js"
+  },
+  "keywords": [
+    "bootstrap4",
+    "sass",
+    "npm-scripts",
+    "modal-events",
+    "distri"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.6.2",
+    "jquery": "^3.5.1",
+    "open-iconic": "^1.1.1",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "onchange": "^7.1.0",
+    "rimraf": "^6.0.1",
+    "sass": "^1.83.4"
+  }
+}

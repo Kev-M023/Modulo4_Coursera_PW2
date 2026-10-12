@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Tienda Tech Express - Módulo 4 (SASS, NPM Scripts & Eventos)</title>
+
+  <!-- Bootstrap 4 CSS desde node_modules -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Open Iconic CSS desde node_modules -->
+  <link rel="stylesheet" href="node_modules/open-iconic/font/css/open-iconic-bootstrap.min.css">
+  <!-- Hoja de estilos generada a partir de styles.scss -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Barra de navegación fija superior -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <span class="oi oi-laptop mr-2 text-info" aria-hidden="true"></span>
+        Tech Express <span class="badge badge-warning text-dark ml-2 small">Módulo 4</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTech4" aria-controls="navbarTech4" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarTech4">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><span class="oi oi-home mr-1"></span> Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#seccion-sass"><span class="oi oi-code mr-1"></span> Estilos SASS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#seccion-modal"><span class="oi oi-browser mr-1"></span> Eventos del Modal</a>
+          </li>
+        </ul>
+
+        <!-- Botón que activa el modal (se inhabilita y cambia de color en show.bs.modal, y se restaura en hidden.bs.modal) -->
+        <button type="button" id="btnAbrirModal" class="btn btn-primary" data-toggle="modal" data-target="#registroModal">
+          <span class="oi oi-account-login mr-1"></span> Abrir Modal de Registro
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4">
+
+    <!-- Contenedor dinámico de alertas -->
+    <div id="alertContainer" class="mt-2"></div>
+
+    <!-- Jumbotron con presentación del Módulo 4 -->
+    <div class="jumbotron text-center bg-white border shadow-sm p-4 my-4">
+      <h1 class="display-5 font-weight-bold text-dark">Módulo 4: Automatización y Preprocesadores</h1>
+      <p class="lead text-muted">Integración de eventos Javascript/JQuery de Bootstrap, compilación con SASS y preparación para salida a producción.</p>
+      <hr class="my-4">
+      <p class="text-secondary mb-3">Hacé clic en el botón principal para probar los 4 eventos del ciclo de vida del modal en la consola del navegador (F12).</p>
+      <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#registroModal">
+        <span class="oi oi-external-link mr-1"></span> Probar Apertura del Modal
+      </button>
+    </div>
+
+    <!-- Sección que demuestra el uso de Mixins y Variables SASS (amarillo, rojo, verde) -->
+    <section id="seccion-sass" class="mb-5">
+      <div class="mb-3">
+        <h2 class="h4 font-weight-bold"><span class="oi oi-brush mr-2 text-primary"></span> Demostración de Mixin y Variables SASS</h2>
+        <p class="text-muted">Cajas estilizadas con el mixin <code>@mixin caja-destacada</code> y las variables <code>$color-verde</code>, <code>$color-amarillo</code> y <code>$color-rojo</code> definidas en <code>styles.scss</code>.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-md-4">
+          <div class="alerta-verde">
+            <h5 class="font-weight-bold"><span class="oi oi-check mr-1"></span> Estado: Operación Exitosa</h5>
+            <p class="mb-0">Estilo generado a partir de <code>$color-verde</code> y el mixin parametrizable de márgenes y relleno.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="alerta-amarilla">
+            <h5 class="font-weight-bold"><span class="oi oi-warning mr-1"></span> Advertencia: Atención</h5>
+            <p class="mb-0">Estilo generado a partir de <code>$color-amarillo</code> para resaltar mensajes preventivos.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="alerta-roja">
+            <h5 class="font-weight-bold"><span class="oi oi-x mr-1"></span> Crítico: Error o Fallo</h5>
+            <p class="mb-0">Estilo generado a partir de <code>$color-rojo</code> para advertencias de máxima prioridad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Catálogo de productos -->
+    <section class="mb-5">
+      <h2 class="h4 font-weight-bold mb-3"><span class="oi oi-grid-three-up mr-2 text-primary"></span> Catálogo de Artículos</h2>
+      <div class="row">
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="card h-100">
+            <img src="img/product-laptop.svg" class="card-img-top" alt="Notebook">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">Notebook Pro 15"</h5>
+              <p class="card-text text-muted">CPU 12 núcleos, 32GB RAM DDR5, 1TB NVMe.</p>
+              <span class="badge badge-alerta-verde p-1">En Stock</span>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <span class="font-weight-bold text-primary">$1,450</span>
+              <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#registroModal">Comprar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="card h-100">
+            <img src="img/product-monitor.svg" class="card-img-top" alt="Monitor">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">Monitor Curvo 27"</h5>
+              <p class="card-text text-muted">Panel IPS 144Hz 4K con USB-C 90W PD.</p>
+              <span class="badge badge-alerta-verde p-1">En Stock</span>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <span class="font-weight-bold text-primary">$490</span>
+              <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#registroModal">Comprar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="card h-100">
+            <img src="img/product-teclado.svg" class="card-img-top" alt="Teclado">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">Teclado Mecánico RGB</h5>
+              <p class="card-text text-muted">Switches Hot-swap y cuerpo de aluminio.</p>
+              <span class="badge badge-alerta-amarilla p-1">Poco Stock</span>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <span class="font-weight-bold text-primary">$120</span>
+              <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#registroModal">Comprar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <div class="card h-100">
+            <img src="img/product-auriculares.svg" class="card-img-top" alt="Auriculares">
+            <div class="card-body">
+              <h5 class="card-title font-weight-bold">Auriculares ANC</h5>
+              <p class="card-text text-muted">Cancelación de ruido activa híbrida y 35h batería.</p>
+              <span class="badge badge-alerta-verde p-1">En Stock</span>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <span class="font-weight-bold text-primary">$180</span>
+              <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#registroModal">Comprar</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Componente MODAL al final del body con formulario -->
+  <div class="modal fade" id="registroModal" tabindex="-1" role="dialog" aria-labelledby="registroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title font-weight-bold" id="registroModalLabel">
+            <span class="oi oi-person mr-2 text-info"></span> Registro de Usuario & Diagnóstico
+          </h5>
+          <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <!-- Formulario en el cuerpo del modal -->
+        <form id="formRegistroModal">
+          <div class="modal-body">
+            <p class="text-muted small mb-3">Completá tus datos para registrarte. Fijate en la consola de tu navegador cómo los 4 eventos del ciclo de vida del modal son registrados por el script.</p>
+
+            <div class="form-group">
+              <label for="modalNombre" class="font-weight-bold">Nombre Completo:</label>
+              <input type="text" class="form-control" id="modalNombre" placeholder="Tu nombre y apellido" required>
+            </div>
+
+            <div class="form-group">
+              <label for="modalEmail" class="font-weight-bold">Email de Contacto:</label>
+              <input type="email" class="form-control" id="modalEmail" placeholder="correo@ejemplo.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="modalPlan" class="font-weight-bold">Perfil de Usuario:</label>
+              <select class="form-control" id="modalPlan">
+                <option value="estudiante">Estudiante / Aprendizaje</option>
+                <option value="profesional">Profesional / Desarrollador</option>
+                <option value="empresa">Empresa / Corporativo</option>
+              </select>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="checkNotificaciones" checked>
+              <label class="form-check-label text-muted small" for="checkNotificaciones">
+                Deseo recibir actualizaciones sobre nuevos cursos y herramientas.
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-footer bg-light">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">
+              <span class="oi oi-circle-check mr-1"></span> Confirmar Registro
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer con alineaciones requeridas (izquierda, centro, derecha) y etiqueta <address> -->
+  <footer class="footer py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <div class="col-12 col-md-4 text-left mb-3 mb-md-0">
+          <h5><span class="oi oi-map-marker mr-1 text-info"></span> Contacto Comercial</h5>
+          <address class="mb-0">
+            <strong>Tienda Tech Express S.A.</strong><br>
+            Av. Libertador 4500, Piso 5<br>
+            Buenos Aires, Argentina<br>
+            <abbr title="Teléfono">Tel:</abbr> +54 11 5555-8888<br>
+            <a href="mailto:soporte@techexpress.com">soporte@techexpress.com</a>
+          </address>
+        </div>
+
+        <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
+          <h5>Redes y Comunidad</h5>
+          <p class="mb-2 text-muted">Conectate con nosotros:</p>
+          <div>
+            <a href="https://facebook.com" class="mx-2" target="_blank" rel="noopener"><span class="oi oi-globe mr-1"></span> Facebook</a>
+            <a href="https://instagram.com" class="mx-2" target="_blank" rel="noopener"><span class="oi oi-camera-slr mr-1"></span> Instagram</a>
+            <a href="https://linkedin.com" class="mx-2" target="_blank" rel="noopener"><span class="oi oi-briefcase mr-1"></span> LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4 text-right">
+          <h5>Sobre el Sitio</h5>
+          <p class="mb-1">Proyecto Práctico - Módulo 4 Final</p>
+          <small class="text-muted">&copy; 2026 Tienda Tech Express. Todos los derechos reservados.</small>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts JS requeridos -->
+  <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+  <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
